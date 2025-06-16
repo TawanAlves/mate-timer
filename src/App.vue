@@ -149,7 +149,7 @@ const showMessage = (msg: string, type: string) => {
 }
 
 const playSound = () => {
-  const audio = new Audio('/src/assets/timer.mp3')
+  const audio = new Audio('/timer.mp3')
   audio.play()
 }
 
@@ -157,7 +157,7 @@ const playSoundThreeTimes = () => {
   let count = 0
   const play = () => {
     if (count < 3) {
-      const audio = new Audio('/src/assets/timer.mp3')
+      const audio = new Audio('/timer.mp3')
       audio.play()
       count++
       audio.onended = play
