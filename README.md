@@ -1,7 +1,13 @@
-# mate-timer V.1
+# Mate Timer V.2
 
 <p align="center">
 <img src="./public/image.png" >
+</p>
+<p align="center">
+<img src="./public/image3.png" >
+</p>
+<p align="center">
+<img src="./public/image2.png" >
 </p>
 
 ## Project Setup
