@@ -1,6 +1,8 @@
 # mate-timer V.1
 
-<img src="./public/image.png">
+<p align="center">
+<img src="./public/image.png" >
+</p>
 
 ## Project Setup
 
