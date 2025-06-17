@@ -1,8 +1,14 @@
 <template>
   <main>
     <div id="app-container">
-      <MateIcon />
-      <h1>Mate Timer</h1>
+    <video
+    ref="mateVideo"
+    src="/mate.mp4"
+    muted
+    playsinline
+    :style="{ width: '200px' }"
+    />
+      <h1 >Mate Timer</h1>
       <div class="input-section">
         <label for="minutes-input">Tempo em Minutos:</label>
         <input type="number" id="minutes-input" v-model.number="minutesInput" placeholder="Insira os minutos" min="1"
@@ -10,7 +16,7 @@
 
         <div class="button-container">
 
-          <button v-if="!isProgressing && progress == 0" @click="startProgress"
+          <button v-if="(!isProgressing && progress == 0) || progress == 100" @click="startProgress"
             :disabled="isProgressing || minutesInput <= 0" >
             Inciar Timer
           </button>
@@ -21,9 +27,8 @@
           <button v-if="!isProgressing && progress > 0 && progress < 100" @click="continueProgress">
             Continuar
           </button>
-          <button v-if="progress > 0 && !isProgressing" @click="resetProgress" class="stop-button">Zerar</button>
+          <button v-if="progress > 0 && progress < 100 && !isProgressing" @click="resetProgress" class="stop-button">Zerar</button>
 
-          <!-- <button v-if="isProgressing" @click="stopProgress" class="stop-button">Parar Timer</button> -->
         </div>
       </div>
 
@@ -43,8 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import MateIcon from './components/MateIcon.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 const minutesInput = ref(0)
 const progress = ref(0)
@@ -166,6 +170,14 @@ const playSoundThreeTimes = () => {
   play()
 }
 
+const mateVideo = ref<HTMLVideoElement | null>(null)
+watch(progress, (newVal) => {
+  if (mateVideo.value) {
+    const duration = mateVideo.value.duration
+    mateVideo.value.currentTime = (newVal / 100) * duration
+  }
+})
+
 
 </script>
 
@@ -185,20 +197,18 @@ body {
   background-color: #ffffff;
   padding: 30px;
   border-radius: 12px;
-  /* Cantos arredondados */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 500px;
   width:  300px;
-  /* Responsivo */
   box-sizing: border-box;
-  /* Inclui padding e border no width */
 }
 
 h1 {
   color: #2c3e50;
   margin-bottom: 25px;
   font-size: 1.8em;
+  padding-top: 1rem;
 }
 
 .input-section {

@@ -1,5 +1,8 @@
-# Mate Timer V.2
+# Mate Timer V.3
 
+<p align="center" >
+<img src="./public/mate.gif" style="width: 200px">
+</p>
 <p align="center">
 <img src="./public/image.png" >
 </p>
